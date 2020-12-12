@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "../config/environment"
+require_relative "../config/environment.rb"
 
-
-Episode::CLI.new.run
+EpisodeIndex::CLI.new.run
 

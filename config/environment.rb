@@ -1,10 +1,10 @@
-require "pry"
+
 require "net/http"
-require 'json'
 require "open-uri"
+require "json"
+require "pry"
 
-require_relative "..lib/api"
-require_relative "..lib/cli"
-require_relative "..lib/episode"
-
-API::CLI.new.call
+require_relative "../lib/module/episode_index"
+require_relative "../lib/cli"
+require_relative "../lib/episode"
+require_relative "../lib/api"

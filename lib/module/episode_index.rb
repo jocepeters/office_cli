@@ -1,4 +1,3 @@
 
-module EpisodeIndex
-    
+module EpisodeIndex    
 end

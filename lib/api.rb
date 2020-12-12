@@ -1,16 +1,18 @@
+require_relative "../config/environment"
 
-class API
+class EpisodeIndex::API
 
     def initialize
-        @url = "https://www.officeapi.dev/api/episodes/"
+        @url = "https://www.officeapi.dev/api/episodes"
     end
 
-    def fetch_office_net_http
-        uri = URI(@url)
+    def get_episode_data(url)
+        uri = URI.parse(@url)
         response = Net::HTTP.get(uri)
         data = JSON.parse(response)
+        EpisodeIndex::Episode.new(data)
     end
- 
+
 end
 
-API.new.fetch_office_net_http
+ 
