@@ -14,11 +14,12 @@ module EpisodeIndex
         
         data = JSON.parse(response)
         data["data"].map do |episode|
+        Episode.new(data)
             episode["title"]
-            binding.pry
         end
       end
     end
   end
 
   EpisodeIndex::API.new.titles
+binding.pry

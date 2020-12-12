@@ -2,5 +2,5 @@
 
 require_relative "../config/environment.rb"
 
-#EpisodeIndex::CLI.new.run
+EpisodeIndex::CLI.new.run
 

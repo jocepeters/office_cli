@@ -4,15 +4,15 @@
 
 class EpisodeIndex::CLI
 
+ 
   def run
     greeting
     menu
-    goodbye
   end
 
   def greeting
-    puts "Good morning, Vietnam!"
-    EpisodeIndex::API.new.get_episode_title
+    puts "Hello"
+    EpisodeIndex::API.new.titles
   end
 
   def menu
