@@ -22,4 +22,3 @@ module EpisodeIndex
   end
 
   EpisodeIndex::API.new.titles
-binding.pry
