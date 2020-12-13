@@ -22,24 +22,35 @@ class EpisodeIndex::CLI
   end
 
   def list_menu
-    input = ""
+     puts "Type the episode number you want more information on."
+     puts "To quit, type 'exit'."
+     input = gets.strip
 
-    while input != "exit"
-    puts "Type the episode number you want more information on."
-    puts "To quit, type 'exit'."
-    input = gets.strip
-
-    if input.to_i.between?(1, Episode.title.count)
-    else
-      puts "That's not a valid entry, please type a valid episode number."  
+     if input.to_i.between?(1, Episode.title.count)
+      list_details(Episode.all[input.to_i])
+      list_menu
+     elsif input == "list"
       list_episode
-    end
+      list_menu
+     elsif input == "exit"
+     else
+      invalid
+      list_menu
+     end
   end
 end
 
+  def list_details(episode)
+  end
+
+  def invalid
+    puts "Invalid command - please select a valid command."
+    list_episode
+  end
 
 
   def bye
+    if input != "exit"
     puts "Catch you on the flippity flip!"
     exit
   end
