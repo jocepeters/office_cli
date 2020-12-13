@@ -14,8 +14,9 @@ module EpisodeIndex
         
         data = JSON.parse(response)
         data["data"].map do |episode|
-        Episode.new(data)
+        Episode.new(episode)
             episode["title"]
+            
         end
       end
     end

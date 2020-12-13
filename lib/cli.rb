@@ -6,26 +6,23 @@ class EpisodeIndex::CLI
 
  
   def run
-    greeting
-    list_episode
-    menu
-    bye
-  end
-
-  def greeting
-    puts "Good morning, Vietam!"
+    puts "Hello, Office friends!"
     EpisodeIndex::API.new.titles
-  end
-
-  def menu
-   list_episode
+    list_episode
+    list_menu
   end
 
 
   def list_episode
-    EpisodeIndex::Episode.all.each.with_index(1) do |data, i|
-      puts "#{i}. #{data.name}"
+    EpisodeIndex::Episode.all.each.with_index(1) do |episode, i|
+      puts "#{i}. #{episode.name}"
     end
+    puts ""
+  end
+
+  def list_menu
+    puts "Type episode number you want more information on, or 'exit'."
+    
   end
 
   def bye
