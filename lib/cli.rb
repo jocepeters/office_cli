@@ -6,7 +6,8 @@ class EpisodeIndex::CLI
 
  
   def run
-    puts "Hello, Office friends!"
+    puts "Hello, friend!"
+    puts "Here are some episodes from 'The Office'"
     EpisodeIndex::API.new.titles
     list_episode
     list_menu
@@ -15,7 +16,7 @@ class EpisodeIndex::CLI
 
   def list_episode
     EpisodeIndex::Episode.all.each.with_index(1) do |episode, i|
-      puts "#{i}. #{episode.name}"
+      puts "#{i}. #{episode.title}"
     end
     puts ""
   end
@@ -24,11 +25,11 @@ class EpisodeIndex::CLI
     input = ""
 
     while input != "exit"
-    puts "Type episode number you want more information on."
+    puts "Type the episode number you want more information on."
     puts "To quit, type 'exit'."
     input = gets.strip
 
-    if input.to_i.between?(1, Episode.all.count)
+    if input.to_i.between?(1, Episode.title.count)
     else
       puts "That's not a valid entry, please type a valid episode number."  
       list_episode
