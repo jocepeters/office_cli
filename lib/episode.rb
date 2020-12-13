@@ -8,9 +8,6 @@ class EpisodeIndex::Episode
          self.class.attr_accessor key.to_s
          self.send("#{key}=", value)
          @name = name
-         # @title = title
-         # @description = description
-         # @writer = writer
       end
       
       @@all << self
