@@ -44,12 +44,8 @@ class EpisodeIndex::CLI
 
   def print_details(episode)
     puts "here ae some details"
-    EpisodeIndex::API.new.description
-    # puts episode.title
-    # puts "#{episode.description}"
-    # puts "#{episode.writer}"
-    # puts "#{episode.director}"
-    # puts "#{episode.air_date}"
+    puts EpisodeIndex::API.new.titles(titles.to_i)
+    puts EpisodeIndex::API.new.description(episode.to_i)
   end
 
 
