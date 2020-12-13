@@ -5,7 +5,7 @@ module EpisodeIndex
   
     class API
       def initialize
-        @url = "https://www.officeapi.dev/api/episodes?limit=400"
+        @url = "https://www.officeapi.dev/api/episodes"
       end
   
       def titles
@@ -20,15 +20,15 @@ module EpisodeIndex
         end
     
 
-#         def description
-#             uri = URI.parse(@url)
-#         response = Net::HTTP.get(uri)
+        def description
+            uri = URI.parse(@url)
+        response = Net::HTTP.get(uri)
         
-#         data = JSON.parse(response)
-#         data["data"].map do |episode|
-#         Episode.new(episode)
-#             episode["description"]
-#         end
+        data = JSON.parse(response)
+        data["data"].map do |episode|
+        Episode.new(episode)
+            episode["description"]
+        end
     
 
 #         def writer
@@ -65,10 +65,10 @@ module EpisodeIndex
 #        end
 #     end
 # end
-# end
+end
 end
 end
 end
 
   EpisodeIndex::API.new.titles
-  
+  EpisodeIndex::API.new.description

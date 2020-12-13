@@ -1,14 +1,13 @@
 class EpisodeIndex::Episode
-   attr_accessor :name
+ 
 
    @@all = []
    
-   def initialize(title_hash, name=nil)
+   def initialize(title_hash)
       title_hash.each do |key, value|
          self.class.attr_accessor key.to_s
-         self.send("#{key}=", value)
-         @name = name
-      end
+         self.send("#{key}=", value)   
+            end
       
       @@all << self
    end
@@ -16,5 +15,7 @@ class EpisodeIndex::Episode
    def self.all
       @@all
    end
+
+ 
 
 end

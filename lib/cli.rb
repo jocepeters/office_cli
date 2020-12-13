@@ -1,10 +1,8 @@
-
 #puts and prints statements
 #user inputs
 
 class EpisodeIndex::CLI
 
- 
   def run
     puts "Hello, friend!"
     puts "Here are some episodes from 'The Office'"
@@ -23,29 +21,35 @@ class EpisodeIndex::CLI
 
   def list_menu
      puts "Type the episode number you want more information on."
-     puts "To quit, type 'exit'."
-     input = gets.strip
+     input = gets.strip.to_i
+    
 
-     if input.to_i.between?(1, Episode.title.count)
-      list_details(Episode.all[input.to_i])
-      list_menu
-     elsif input == "list"
-      list_episode
-      list_menu
-     elsif input == "exit"
+     print_details(input)
+
+     puts ""
+     puts "Is there another episode you would like details on? Y/N"
+
+     input = gets.strip
+     if input == "Y"
+      run
+     elsif input == "N"
+      puts "See you on the flippity flip!"
+      exit
      else
-      invalid
-      list_menu
+      puts "That's not a valid command. Let's start over"
+
+     episode = EpisodeIndex::Episode.find(input_to_i)
      end
   end
-end
 
-  def list_details(episode)
-  end
-
-  def invalid
-    puts "Invalid command - please select a valid command."
-    list_episode
+  def print_details(episode)
+    puts "here ae some details"
+    EpisodeIndex::API.new.description
+    # puts episode.title
+    # puts "#{episode.description}"
+    # puts "#{episode.writer}"
+    # puts "#{episode.director}"
+    # puts "#{episode.air_date}"
   end
 
 
@@ -55,5 +59,5 @@ end
     exit
   end
 
-
+end
 end
