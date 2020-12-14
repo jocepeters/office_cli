@@ -1,5 +1,4 @@
 class EpisodeIndex::Episode
- 
 
    @@all = []
    
@@ -8,7 +7,7 @@ class EpisodeIndex::Episode
          self.class.attr_accessor key.to_s
          self.send("#{key}=", value)   
             end
-      
+    
       @@all << self
    end
 
@@ -16,6 +15,7 @@ class EpisodeIndex::Episode
       @@all
    end
 
- 
-
+   def self.find
+      self.all
+   end
 end

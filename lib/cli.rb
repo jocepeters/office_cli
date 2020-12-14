@@ -38,14 +38,14 @@ class EpisodeIndex::CLI
      else
       puts "That's not a valid command. Let's start over"
 
-     episode = EpisodeIndex::Episode.find(input_to_i)
-     end
+      episode = EpisodeIndex::Episode.find(input_to_i)
+
+    end
   end
 
   def print_details(episode)
     puts "here ae some details"
-    puts EpisodeIndex::API.new.titles(episode.to_i)
-    puts EpisodeIndex::API.new.description(episode.to_i)
+    puts EpisodeIndex::Episode.find
   end
 
 
