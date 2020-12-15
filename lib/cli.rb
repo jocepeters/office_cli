@@ -4,8 +4,8 @@
 class EpisodeIndex::CLI
 
   def run
-    puts "Hello, friend!"
-    puts "Here are some episodes from 'The Office'"
+    puts "Hello, friend!".cyan
+    puts "Here are some episodes from 'The Office'".cyan
     EpisodeIndex::API.new.titles
     list_episode
     list_menu
@@ -21,39 +21,35 @@ class EpisodeIndex::CLI
 
   def list_menu
      puts "Type the episode number you want more information on."
-     input = gets.strip.to_i
+     input = gets.strip
     
 
      print_details(input)
 
-     puts ""
      puts "Is there another episode you would like details on? Y/N"
 
      input = gets.strip
      if input == "Y"
       run
      elsif input == "N"
-      puts "See you on the flippity flip!"
-      exit
-     else
-      puts "That's not a valid command. Let's start over"
+      bye
 
-      episode = EpisodeIndex::Episode.find(input_to_i)
-
+    else
+      puts "Are you trying to hurt my feelings? Because If so you are succeeding.".red
+      list_menu
+      
     end
   end
 
   def print_details(episode)
-    puts "here ae some details"
+    puts "WHat else you got!?".cyan
     puts EpisodeIndex::Episode.find
   end
 
 
   def bye
-    if input != "exit"
-    puts "Catch you on the flippity flip!"
+    puts "Ok then, catch you on the flippity flip!".cyan
     exit
   end
 
-end
 end

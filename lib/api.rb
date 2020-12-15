@@ -5,7 +5,7 @@ module EpisodeIndex
   
     class API
       def initialize
-        @url = "https://www.officeapi.dev/api/episodes?=28"
+        @url = "https://www.officeapi.dev/api/episodes"
       end
   
       def titles
