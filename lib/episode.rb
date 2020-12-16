@@ -11,6 +11,14 @@ class EpisodeIndex::Episode
       @@all << self
    end
 
+   def inspect
+      string = "Episode, details: "
+      string << self.attributes.map { |a| "#{a}: #{send(a)}"
+      string
+   end
+
+
+
    def self.all
       @@all
    end
@@ -18,4 +26,6 @@ class EpisodeIndex::Episode
    def self.find
       self.all
    end
+
 end
+

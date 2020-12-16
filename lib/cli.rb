@@ -5,7 +5,6 @@ class EpisodeIndex::CLI
 
   def run
     puts "Hello, friend!".cyan
-    puts "Here are some episodes from 'The Office'".cyan
     EpisodeIndex::API.new.titles
     list_episode
     list_menu
@@ -13,6 +12,7 @@ class EpisodeIndex::CLI
 
 
   def list_episode
+    puts "Here are some episodes from 'The Office'".cyan
     EpisodeIndex::Episode.all.each.with_index(1) do |episode, i|
       puts "#{i}. #{episode.title}"
     end
@@ -21,7 +21,7 @@ class EpisodeIndex::CLI
 
   def list_menu
      puts "Type the episode number you want more information on."
-     input = gets.strip
+     input = gets.strip.find
     
 
      print_details(input)
@@ -30,7 +30,7 @@ class EpisodeIndex::CLI
 
      input = gets.strip
      if input == "Y"
-      run
+      list_episode
      elsif input == "N"
       bye
 
@@ -42,8 +42,8 @@ class EpisodeIndex::CLI
   end
 
   def print_details(episode)
-    puts "WHat else you got!?".cyan
-    puts EpisodeIndex::Episode.find
+    puts "here are some details"
+    EpisodeIndex::Episode.find.each { |ep| puts ep.attributes }
   end
 
 
