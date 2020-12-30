@@ -11,10 +11,10 @@ class EpisodeIndex::Episode
       @@all << self
    end
 
-   def inspect
+   def inspect # returns episodes names and details not just ID's
       string = "Episode, details: "
-      string << self.attributes.map { |a| "#{a}: #{send(a)}"
-      string
+      string << self.attributes.map { |a| "#{a}: #{send(a)}"}
+      #string
    end
 
 

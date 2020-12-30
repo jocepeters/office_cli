@@ -1,14 +1,15 @@
 require_relative "../config/environment"
 
 module EpisodeIndex
-   
-  
+
+
     class API
-      def initialize
-        @url = "https://www.officeapi.dev/api/episodes"
-      end
-  
-      def titles
+
+    def initialize #method
+        @url = "https://www.officeapi.dev/api/episodes" #instance varible
+    end
+
+    def titles
         uri = URI.parse(@url)
         response = Net::HTTP.get(uri)
 
@@ -16,58 +17,22 @@ module EpisodeIndex
         data["data"].map do |episode|
         Episode.new(episode)
             episode["title"]
-            
         end
-    
+        # puts Episode
+    end
 
-        def description
-            uri = URI.parse(@url)
+    def description
+        uri = URI.parse(@url)
         response = Net::HTTP.get(uri)
-        
+
         data = JSON.parse(response)
-        data["data"].map do |episode|
-        Episode.new(episode)
-            episode["description"]
+
+        episodes = [];
+        data["data"].map do |episode| episodes.push(episode) end
+        return episodes
+
         end
-    
 
-#         def writer
-#             uri = URI.parse(@url)
-#         response = Net::HTTP.get(uri)
-    
-#         data = JSON.parse(response)
-#         data["data"].map do |episode|
-#         Episode.new(episode)
-#             episode["writer"]
-#         end
-    
+    end
 
-#        def director
-#             uri = URI.parse(@url)
-#         response = Net::HTTP.get(uri)
-        
-#         data = JSON.parse(response)
-#         data["data"].map do |episode|
-#         Episode.new(episode)
-#             episode["director"]
-#         end
-    
-    
-#         def air_date
-#             uri = URI.parse(@url)
-#         response = Net::HTTP.get(uri)
-    
-#         data = JSON.parse(response)
-#         data["data"].map do |episode|
-#         Episode.new(episode)
-#             episode["airDate"]
-#         end
-#        end
-#     end
 end
-end
-end
-end
-
-#   EpisodeIndex::API.new.titles
-#   EpisodeIndex::API.new.description
