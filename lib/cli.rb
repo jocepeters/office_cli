@@ -22,11 +22,18 @@ attr_reader :episodes
   def list_menu
      puts "Type the episode number you want more information on.".cyan
     
+     input = gets.strip
+    #  while input =! input.between? (0, 27)
+    #  puts "That is not a valid number!"
+    #  list_menu
+    
+# #ask for user input
+# #validate userinput with a conditional
+    print_details(gets.strip)
+    
 
-#ask for user input
-#validate userinput with a conditional
-
-     print_details(gets.strip)
+    
+    
 
      puts "Is there another episode you would like details on? Y/N".cyan
 
@@ -39,9 +46,9 @@ attr_reader :episodes
         list_menu
      elsif input == "N"
       bye
-    elsif input == "n"
+     elsif input == "n"
       bye
-    else
+     else
       puts "Are you trying to hurt my feelings? Because If so you are succeeding.".red
       list_menu
       
