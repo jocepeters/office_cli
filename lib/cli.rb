@@ -2,8 +2,77 @@
 #user inputs
 
 class EpisodeIndex::CLI
+attr_reader :episodes
 
   def run
+    office_graphic
+    EpisodeIndex::API.new.titles
+    list_episode
+    list_menu
+  end
+
+
+  def list_episode
+    @episodes = EpisodeIndex::Episode.all
+    episodes.each.with_index(1) do |episode, i|
+      puts "#{i}. #{episode.title} "
+    end
+  end
+
+  def list_menu
+     puts "Type the episode number you want more information on.".cyan
+    
+
+#ask for user input
+#validate userinput with a conditional
+
+     print_details(gets.strip)
+
+     puts "Is there another episode you would like details on? Y/N".cyan
+
+     input = gets.strip
+     if input == "Y"
+        list_episode
+        list_menu
+     elsif input == "y"
+        list_episode
+        list_menu
+     elsif input == "N"
+      bye
+    elsif input == "n"
+      bye
+    else
+      puts "Are you trying to hurt my feelings? Because If so you are succeeding.".red
+      list_menu
+      
+    end
+  end
+
+  def print_details(episode)
+    episode = episode.to_i - 1
+    puts "here are some details \n\n"
+    puts 'ID: ' + EpisodeIndex::Episode.all[episode]._id
+    puts 'Episode Title: ' + EpisodeIndex::Episode.all[episode].title
+    puts 'Episode Description: ' + EpisodeIndex::Episode.all[episode].description
+    puts 'Writer ID: ' + EpisodeIndex::Episode.all[episode].writer['_id']
+    puts 'Writer Name: ' + EpisodeIndex::Episode.all[episode].writer['name']
+    puts 'Writer Role: ' + EpisodeIndex::Episode.all[episode].writer['role']
+    puts 'Director Director ID: ' + EpisodeIndex::Episode.all[episode].director['_id']
+    puts 'Director Name: ' + EpisodeIndex::Episode.all[episode].director['name']
+    puts 'Director Role: ' + EpisodeIndex::Episode.all[episode].director['role']
+    puts 'Air Date: ' + EpisodeIndex::Episode.all[episode].airDate
+    puts "\n"
+
+  end
+  
+
+
+  def bye
+    puts "Ok then, catch you on the flippity flip!".cyan
+    exit
+  end
+
+  def office_graphic
     puts "                                                                                                              
                                                                                                                                                                                                         
     :shmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmdy+`                  
@@ -49,59 +118,6 @@ class EpisodeIndex::CLI
 ``.dMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNosdmmNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNmdsomMN:                
 ````omNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyhNMNh-                 
 ``  `:+ossssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssso/.  ".cyan
-    EpisodeIndex::API.new.titles
-    list_episode
-    list_menu
-  end
-
-
-  def list_episode
-    EpisodeIndex::Episode.all.each.with_index(1) do |episode, i|
-      puts "#{i}. #{episode.title} "
-    end
-  end
-
-  def list_menu
-     puts "Type the episode number you want more information on.".cyan
-
-     print_details(gets.strip)
-
-     puts "Is there another episode you would like details on? Y/N".cyan
-
-     input = gets.strip
-     if input == "Y"
-        list_episode
-        list_menu
-     elsif input == "N"
-      bye
-
-    else
-      puts "Are you trying to hurt my feelings? Because If so you are succeeding.".red
-      list_menu
-      
-    end
-  end
-
-  def print_details(episode)
-    episode = episode.to_i - 1
-    puts "here are some details \n\n"
-    puts 'ID: ' + EpisodeIndex::API.new.description[episode]['_id']
-    puts 'Episode Title: ' + EpisodeIndex::API.new.description[episode]['title']
-    puts 'Episode Description: ' + EpisodeIndex::API.new.description[episode]['description']
-    puts 'Writer ID: ' + EpisodeIndex::API.new.description[episode]['writer']['_id']
-    puts 'Writer Name: ' + EpisodeIndex::API.new.description[episode]['writer']['name']
-    puts 'Writer Role: ' + EpisodeIndex::API.new.description[episode]['writer']['role']
-    puts 'Director Director ID: ' + EpisodeIndex::API.new.description[episode]['director']['_id']
-    puts 'Director Name: ' + EpisodeIndex::API.new.description[episode]['director']['name']
-    puts 'Director Role: ' + EpisodeIndex::API.new.description[episode]['director']['role']
-    puts 'Air Date: ' + EpisodeIndex::API.new.description[episode]['airDate']
-    puts "\n"
-
-  end
-
-  def bye
-    puts "Ok then, catch you on the flippity flip!".cyan
-    exit
   end
 
 end

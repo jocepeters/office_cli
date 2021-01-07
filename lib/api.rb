@@ -5,34 +5,21 @@ module EpisodeIndex
 
     class API
 
-    def initialize #method
+    def initialize 
         @url = "https://www.officeapi.dev/api/episodes" #instance varible
     end
 
     def titles
-        uri = URI.parse(@url)
+        uri = URI.parse(@url)    #Uniform Resource Identifier
         response = Net::HTTP.get(uri)
 
         data = JSON.parse(response)
-        data["data"].map do |episode|
+        data["data"].each do |episode|
         Episode.new(episode)
-            episode["title"]
         end
-        # puts Episode
     end
 
-    def description
-        uri = URI.parse(@url)
-        response = Net::HTTP.get(uri)
-
-        data = JSON.parse(response)
-
-        episodes = [];
-        data["data"].map do |episode| episodes.push(episode) end
-        return episodes
-
-        end
-
+   
     end
 
 end
