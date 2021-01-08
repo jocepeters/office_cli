@@ -2,7 +2,7 @@
 #user inputs
 
 class EpisodeIndex::CLI
-attr_reader :episodes
+attr_reader :episodes, :director, :title
 
   def run
     office_graphic
@@ -20,20 +20,19 @@ attr_reader :episodes
   end
 
   def list_menu
-     puts "If you want information about an Episode, type the Episode number.".cyan
-     if input.betweem? (0, 27)
-      print_details(gets.strip)
+    puts "If you want information about an Episode, type the Episode number.".cyan
+    input = gets.strip.to_i
+    if input.between?(1, episodes.size)
+      episode = episodes[input - 1]
+      print_details(episode)
       second_menu
-     else
+    else
       puts "Please enter a valid number.".red
       list_episode
-     end
+      list_menu
     end
+  end
 
-     
-
-     #ask for user input
-#validate userinput with a conditional
 
      def second_menu
      puts "Is there another episode you would like details on? Y/N".cyan
@@ -56,18 +55,17 @@ attr_reader :episodes
   end
 
   def print_details(episode)
-    episode = episode.to_i - 1
     puts "here are some details \n\n"
-    puts 'ID: ' + EpisodeIndex::Episode.all[episode]._id
-    puts 'Episode Title: ' + EpisodeIndex::Episode.all[episode].title
-    puts 'Episode Description: ' + EpisodeIndex::Episode.all[episode].description
-    puts 'Writer ID: ' + EpisodeIndex::Episode.all[episode].writer['_id']
-    puts 'Writer Name: ' + EpisodeIndex::Episode.all[episode].writer['name']
-    puts 'Writer Role: ' + EpisodeIndex::Episode.all[episode].writer['role']
-    puts 'Director Director ID: ' + EpisodeIndex::Episode.all[episode].director['_id']
-    puts 'Director Name: ' + EpisodeIndex::Episode.all[episode].director['name']
-    puts 'Director Role: ' + EpisodeIndex::Episode.all[episode].director['role']
-    puts 'Air Date: ' + EpisodeIndex::Episode.all[episode].airDate
+    puts 'ID: ' + episode._id
+    puts 'Episode Title: ' + episode.title
+    puts 'Episode Description: ' + episode.description
+    puts 'Writer ID: ' + episode.writer['_id']
+    puts 'Writer Name: ' + episode.writer['name']
+    puts 'Writer Role: ' + episode.writer['role']
+    puts 'Director Director ID: ' + episode.director['_id']
+    puts 'Director Name: ' + episode.director['name']
+    puts 'Director Role: ' + episode.director['role']
+    puts 'Air Date: ' + episode.airDate
     puts "\n"
 
   end
@@ -131,5 +129,7 @@ attr_reader :episodes
 ````omNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNdyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyhNMNh-                 
 ``  `:+ossssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssso/.  ".cyan
   end
+end
+
 
 
