@@ -20,21 +20,22 @@ attr_reader :episodes
   end
 
   def list_menu
-     puts "Type the episode number you want more information on.".cyan
-    
-     input = gets.strip
-    #  while input =! input.between? (0, 27)
-    #  puts "That is not a valid number!"
-    #  list_menu
-    
-# #ask for user input
-# #validate userinput with a conditional
-    print_details(gets.strip)
-    
+     puts "If you want information about an Episode, type the Episode number.".cyan
+     if input.betweem? (0, 27)
+      print_details(gets.strip)
+      second_menu
+     else
+      puts "Please enter a valid number.".red
+      list_episode
+     end
+    end
 
-    
-    
+     
 
+     #ask for user input
+#validate userinput with a conditional
+
+     def second_menu
      puts "Is there another episode you would like details on? Y/N".cyan
 
      input = gets.strip
@@ -42,17 +43,16 @@ attr_reader :episodes
         list_episode
         list_menu
      elsif input == "y"
-        list_episode
-        list_menu
+          list_episode
+          list_menu
      elsif input == "N"
       bye
-     elsif input == "n"
+    elsif input == "n"
       bye
-     else
+    else
       puts "Are you trying to hurt my feelings? Because If so you are succeeding.".red
       list_menu
-      
-    end
+      end
   end
 
   def print_details(episode)
@@ -71,7 +71,12 @@ attr_reader :episodes
     puts "\n"
 
   end
-  
+
+  # def list_episode_by_director
+  #   @director = EpisodeIndex::Episode.all
+    
+  #   end
+  # end
 
 
   def bye
@@ -127,4 +132,4 @@ attr_reader :episodes
 ``  `:+ossssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssso/.  ".cyan
   end
 
-end
+
