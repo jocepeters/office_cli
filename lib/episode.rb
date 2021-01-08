@@ -33,7 +33,7 @@ class EpisodeIndex::Episode  # <<-- namespacing
          return episode
       end
    end
-   nil
+   []
 # create a class method called "find_all_episodes_by_director_name" that receoved the arguemnt of the director name and returns all the episodes by that director. If no episodes are found, then it returns an empty array.
 end
 end

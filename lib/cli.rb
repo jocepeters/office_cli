@@ -2,7 +2,7 @@
 #user inputs
 
 class EpisodeIndex::CLI
-attr_reader :episodes, :director, :title
+attr_reader :episodes
 
   def run
     office_graphic
@@ -10,6 +10,7 @@ attr_reader :episodes, :director, :title
     list_episode
     list_menu
   end
+
 
 
   def list_episode
@@ -35,7 +36,10 @@ attr_reader :episodes, :director, :title
 
 
      def second_menu
-     puts "Is there another episode you would like details on? Y/N".cyan
+     puts "If you'd like to see the list of Episodes again, type 'Y'.".cyan
+     puts "If you'd like to search for the Episode by title, type the Title".cyan
+     puts "If you'd like to search for the Episode by director's name, type the director's first name".cyan
+     puts "Type 'E' to exit.".cyan
 
      input = gets.strip
      if input == "Y"
@@ -44,9 +48,12 @@ attr_reader :episodes, :director, :title
      elsif input == "y"
           list_episode
           list_menu
-     elsif input == "N"
+     elsif input == episodes.title
+      title = gets.strip
+      find_episode_by_title(title)
+     elsif input == "E"
       bye
-    elsif input == "n"
+    elsif input == "e"
       bye
     else
       puts "Are you trying to hurt my feelings? Because If so you are succeeding.".red
@@ -70,11 +77,10 @@ attr_reader :episodes, :director, :title
 
   end
 
-  # def list_episode_by_director
-  #   @director = EpisodeIndex::Episode.all
-    
-  #   end
-  # end
+  def find_episode_by_title(title)
+    all.detect { |episode| episode.title == title }
+    binding.pry
+  end
 
 
   def bye
